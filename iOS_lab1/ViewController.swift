@@ -2,14 +2,14 @@ import UIKit
 
 class ViewController: UIViewController {
     
-
     @IBOutlet weak var numberOfRecordInput: UITextField!
-    
     @IBOutlet weak var resultTextArea: UITextView!
     
     var docDir: String = ""
     var dbFilePath: String = ""
     var db: OpaquePointer? = nil
+    var generatedReading: [Reading] = []
+    var sensors: [Sensor] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,87 +18,64 @@ class ViewController: UIViewController {
         dbFilePath = NSURL(fileURLWithPath: docDir).appendingPathComponent("demo.db")!.path
 
         openDatabase()
-        createSensorTable()
-        getSensors()
-        //generateTwentySensors()
-    }
-    
-    
-    @IBAction func generateRecords(_ sender: UIButton) {
-        resultTextArea.text = numberOfRecordInput.text
-        let numberOfRecord: Int = Int(numberOfRecordInput.text!)!
         
-    }
-    
-    func generateTwentySensors() -> [Sensor] {
-        
-        var result: [Sensor] = []
-        for i in 1...20 {
-            let sensorName = "S" + String(arc4random_uniform(100))
-            let description = "Sensor number " + String(i);
-            let sensor = Sensor(name: sensorName, description: description)
-            result.append(sensor)
+        if !Sensor.checkIfTableSensorExist(db: db) {
+            print("Crete table sensor.")
+            Sensor.createSensorTable(db: db)
+            Sensor.fillSensorTableWithDatas(db: db, sensors: Sensor.getSensorsFromDB(db: db))
+        } else {
+            print("Table sensor exits.")
         }
-        return result;
+        
+        if !Reading.checkIfTableRecordExist(db: db) {
+            print("Create table reading.")
+            Reading.createReadingTable(db: db)
+        } else {
+            print("Table reading exists.")
+        }
+    }
+    
+    @IBAction func addReadingToDB(_ sender: UIButton) {
+        Reading.fillReadingTableWithDatas(db: db, readings: generatedReading)
+    }
+    
+    @IBAction func generateRecording(_ sender: UIButton) {
+        let numberOfReading = Int(numberOfRecordInput.text!)!
+        generatedReading = Reading.generateRecords(number: numberOfReading)
+        var tmp = ""
+        for i in 1...numberOfReading {
+            tmp += "\(generatedReading[i-1].timestamp): \(generatedReading[i-1].sensor.id): \(generatedReading[i-1].value) "
+        }
+        resultTextArea.text = tmp;
     }
     
     
-    @IBAction func addRecords(_ sender: UIButton) {
+    @IBAction func deleteGeneratedReadings(_ sender: UIButton) {
+        resultTextArea.text = ""
+        generatedReading = []
     }
-    
-    @IBAction func deleteRecords(_ sender: UIButton) {
-    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    /////////////////////////////////////////////////////////////////////////// DB For sensor
+    
     func openDatabase(){
         
         if sqlite3_open(dbFilePath, &db) == SQLITE_OK {
-            print("Successfully opened connection to database at \(dbFilePath)")
+            print("Successfully opened connection to database.")
         } else {
             print("Unable to open database. Verify that you created the directory described " +
                 "in the Getting Started section.")
         }
     }
     
-    func createSensorTable() {
-        print("Create table: sensor");
-        let createSQL = "CREATE TABLE sensor(id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(50), desc VARCHAR(50));"
-        sqlite3_exec(db, createSQL, nil, nil, nil)
-        
-        var sensors: [Sensor] = []
-        sensors = generateTwentySensors()
-        var insertSQL = "INSERT INTO sensor (name, desc) VALUES "
-        
-        for sensor in sensors {
-            insertSQL += "(\"\(sensor.name)\", \"\(sensor.desc)\"),";
-            sqlite3_exec(db, insertSQL, nil, nil, nil)
-        }
-        insertSQL = String(insertSQL.characters.dropLast())
-        insertSQL += ";"
-        
-        print(insertSQL)
-        
-        sqlite3_exec(db, insertSQL, nil, nil, nil)
-    }
+     /////////////////////////////////////////////////////////////////////////// DB For reading
     
-    func getSensorsFromDB() {
-        print("Get sensors");
-        var stmt: OpaquePointer? = nil
-        let selectSQL = "SELECT name, desc FROM sensor;"
-        sqlite3_prepare_v2(db, selectSQL, -1, &stmt, nil)
-        
-        while sqlite3_step(stmt) == SQLITE_ROW {
-            let name = String(cString: sqlite3_column_text(stmt, 0))
-            let desc = String(cString: sqlite3_column_text(stmt, 1))
-            print("sensor \(name) with desc \(desc)")
-        }
-        sqlite3_finalize(stmt)
-    }
-    
+
 
 }
 

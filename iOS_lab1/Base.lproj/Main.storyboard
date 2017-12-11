@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="eWg-4u-3x9">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,7 +9,54 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Tab Bar Controller-->
+        <scene sceneID="ydc-m8-bvf">
+            <objects>
+                <tabBarController id="eWg-4u-3x9" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="s5U-ue-Bi4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="3g9-xD-w2l"/>
+                        <segue destination="hkG-Fp-YPP" kind="relationship" relationship="viewControllers" id="njK-H7-wcU"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uFO-IE-Bwk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-953" y="92"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="bya-Y7-NYc">
+            <objects>
+                <tableViewController id="hkG-Fp-YPP" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Xg3-UE-K6e">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="u4U-RD-8bN">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u4U-RD-8bN" id="tNN-Eh-S7A">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="hkG-Fp-YPP" id="wYZ-Hg-oOh"/>
+                            <outlet property="delegate" destination="hkG-Fp-YPP" id="a2c-SG-Cyo"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Item" id="RcA-A6-Jh4"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kqX-6c-LEN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="28" y="435"/>
+        </scene>
+        <!--Item-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="iOS_lab1" customModuleProvider="target" sceneMemberID="viewController">
@@ -33,7 +80,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add"/>
                                 <connections>
-                                    <action selector="addRecords:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pY0-Yu-7i1"/>
+                                    <action selector="addReadingToDB:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ajk-hS-F5g"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="igF-TD-dbB">
@@ -41,7 +88,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Delete"/>
                                 <connections>
-                                    <action selector="deleteRecords:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sQq-BI-7FG"/>
+                                    <action selector="deleteGeneratedReadings:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VaF-LQ-OwL"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2dz-wp-WYf">
@@ -57,20 +104,21 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Ok"/>
                                 <connections>
-                                    <action selector="generateRecords:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TP9-Tk-BpV"/>
+                                    <action selector="generateRecording:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eyk-oG-yFw"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="F7v-pT-aAR"/>
                     <connections>
-                        <outlet property="numberOfRecordInput" destination="k9B-3v-gAu" id="ofJ-eo-Euj"/>
-                        <outlet property="resultTextArea" destination="2dz-wp-WYf" id="thw-DV-jye"/>
+                        <outlet property="numberOfRecordInput" destination="k9B-3v-gAu" id="eFd-6f-Vza"/>
+                        <outlet property="resultTextArea" destination="2dz-wp-WYf" id="J5y-wc-DfC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="117.59999999999999" y="123.68815592203899"/>
+            <point key="canvasLocation" x="28" y="-238"/>
         </scene>
     </scenes>
 </document>
