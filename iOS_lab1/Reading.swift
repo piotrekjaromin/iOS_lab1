@@ -52,4 +52,23 @@ class Reading {
         insertSQL += ";"
         sqlite3_exec(db, insertSQL, nil, nil, nil)
     }
+    
+    static func getReadingsFromDB(db: OpaquePointer?) -> [Reading] {
+        print("In getReadingFromDB")
+        var stmt: OpaquePointer? = nil
+        let selectSQL = "SELECT timestamp, value, sensor_id FROM reading;"
+        sqlite3_prepare_v2(db, selectSQL, -1, &stmt, nil)
+        var readings: [Reading] = []
+        while sqlite3_step(stmt) == SQLITE_ROW {
+            print("found")
+            let timestamp = sqlite3_column_double(stmt, 0)
+            let value = sqlite3_column_double(stmt, 1)
+            let sensor_id = sqlite3_column_int(stmt, 2)
+            print("\(timestamp): \(value): \(sensor_id)")
+            readings.append(Reading(timestamp: timestamp, sensor: Sensor(id: Int(sensor_id), name: "", description: ""), value: value))
+        }
+        sqlite3_finalize(stmt)
+        
+        return readings;
+    }
 }

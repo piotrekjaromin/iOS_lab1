@@ -16,23 +16,24 @@ class ViewController: UIViewController {
         
         docDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
         dbFilePath = NSURL(fileURLWithPath: docDir).appendingPathComponent("demo.db")!.path
+        print(dbFilePath)
 
         openDatabase()
         
-        if !Sensor.checkIfTableSensorExist(db: db) {
+        //if !Sensor.checkIfTableSensorExist(db: db) {
             print("Crete table sensor.")
             Sensor.createSensorTable(db: db)
             Sensor.fillSensorTableWithDatas(db: db, sensors: Sensor.getSensorsFromDB(db: db))
-        } else {
-            print("Table sensor exits.")
-        }
+        //} else {
+        //    print("Table sensor exits.")
+        //}
         
-        if !Reading.checkIfTableRecordExist(db: db) {
+        //if !Reading.checkIfTableRecordExist(db: db) {
             print("Create table reading.")
             Reading.createReadingTable(db: db)
-        } else {
+       // } else {
             print("Table reading exists.")
-        }
+      //  }
     }
     
     @IBAction func addReadingToDB(_ sender: UIButton) {

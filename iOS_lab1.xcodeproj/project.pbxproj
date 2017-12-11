@@ -16,6 +16,10 @@
 		84573DD61FDD75EC004B2E01 /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84573DD51FDD75EC004B2E01 /* Sensor.swift */; };
 		84573DD81FDD76B5004B2E01 /* Reading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84573DD71FDD76B5004B2E01 /* Reading.swift */; };
 		84573DDE1FDD9679004B2E01 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 84573DDD1FDD9679004B2E01 /* libsqlite3.tbd */; };
+		84FF44B31FDF255600F480E6 /* ReadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF44B21FDF255600F480E6 /* ReadingTableViewCell.swift */; };
+		84FF44B51FDF2EFB00F480E6 /* ReadingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF44B41FDF2EFB00F480E6 /* ReadingTableViewController.swift */; };
+		84FF44B71FDF394D00F480E6 /* SensorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF44B61FDF394D00F480E6 /* SensorTableViewCell.swift */; };
+		84FF44B91FDF3A7000F480E6 /* SensorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF44B81FDF3A7000F480E6 /* SensorTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +47,10 @@
 		84573DD71FDD76B5004B2E01 /* Reading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reading.swift; sourceTree = "<group>"; };
 		84573DD91FDD8994004B2E01 /* iOS_lab1-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOS_lab1-Bridging-Header.h"; sourceTree = "<group>"; };
 		84573DDD1FDD9679004B2E01 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		84FF44B21FDF255600F480E6 /* ReadingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadingTableViewCell.swift; sourceTree = "<group>"; };
+		84FF44B41FDF2EFB00F480E6 /* ReadingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadingTableViewController.swift; sourceTree = "<group>"; };
+		84FF44B61FDF394D00F480E6 /* SensorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorTableViewCell.swift; sourceTree = "<group>"; };
+		84FF44B81FDF3A7000F480E6 /* SensorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,11 +98,15 @@
 				84573DB51FDD72F4004B2E01 /* AppDelegate.swift */,
 				84573DB71FDD72F4004B2E01 /* ViewController.swift */,
 				84573DB91FDD72F4004B2E01 /* Main.storyboard */,
+				84FF44B81FDF3A7000F480E6 /* SensorTableViewController.swift */,
+				84FF44B61FDF394D00F480E6 /* SensorTableViewCell.swift */,
+				84FF44B21FDF255600F480E6 /* ReadingTableViewCell.swift */,
 				84573DD51FDD75EC004B2E01 /* Sensor.swift */,
 				84573DBC1FDD72F4004B2E01 /* Assets.xcassets */,
 				84573DBE1FDD72F4004B2E01 /* LaunchScreen.storyboard */,
 				84573DC11FDD72F4004B2E01 /* Info.plist */,
 				84573DD71FDD76B5004B2E01 /* Reading.swift */,
+				84FF44B41FDF2EFB00F480E6 /* ReadingTableViewController.swift */,
 			);
 			path = iOS_lab1;
 			sourceTree = "<group>";
@@ -220,9 +232,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84FF44B31FDF255600F480E6 /* ReadingTableViewCell.swift in Sources */,
 				84573DB81FDD72F4004B2E01 /* ViewController.swift in Sources */,
 				84573DD61FDD75EC004B2E01 /* Sensor.swift in Sources */,
+				84FF44B91FDF3A7000F480E6 /* SensorTableViewController.swift in Sources */,
 				84573DD81FDD76B5004B2E01 /* Reading.swift in Sources */,
+				84FF44B51FDF2EFB00F480E6 /* ReadingTableViewController.swift in Sources */,
+				84FF44B71FDF394D00F480E6 /* SensorTableViewCell.swift in Sources */,
 				84573DB61FDD72F4004B2E01 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -434,6 +450,7 @@
 				84573DD11FDD72F4004B2E01 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		84573DD21FDD72F4004B2E01 /* Build configuration list for PBXNativeTarget "iOS_lab1Tests" */ = {
 			isa = XCConfigurationList;
@@ -442,6 +459,7 @@
 				84573DD41FDD72F4004B2E01 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
