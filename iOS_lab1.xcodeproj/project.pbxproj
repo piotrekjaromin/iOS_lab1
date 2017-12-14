@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84465C1B1FE2F8E9002FE660 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84465C1A1FE2F8E9002FE660 /* TabViewController.swift */; };
 		84573DB61FDD72F4004B2E01 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84573DB51FDD72F4004B2E01 /* AppDelegate.swift */; };
 		84573DB81FDD72F4004B2E01 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84573DB71FDD72F4004B2E01 /* ViewController.swift */; };
 		84573DBB1FDD72F4004B2E01 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84573DB91FDD72F4004B2E01 /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		84465C1A1FE2F8E9002FE660 /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		84573DB21FDD72F4004B2E01 /* iOS_lab1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_lab1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84573DB51FDD72F4004B2E01 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84573DB71FDD72F4004B2E01 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				84573DB51FDD72F4004B2E01 /* AppDelegate.swift */,
 				84573DB71FDD72F4004B2E01 /* ViewController.swift */,
 				84573DB91FDD72F4004B2E01 /* Main.storyboard */,
+				84465C1A1FE2F8E9002FE660 /* TabViewController.swift */,
 				84FF44B81FDF3A7000F480E6 /* SensorTableViewController.swift */,
 				84FF44B61FDF394D00F480E6 /* SensorTableViewCell.swift */,
 				84FF44B21FDF255600F480E6 /* ReadingTableViewCell.swift */,
@@ -238,6 +241,7 @@
 				84FF44B91FDF3A7000F480E6 /* SensorTableViewController.swift in Sources */,
 				84573DD81FDD76B5004B2E01 /* Reading.swift in Sources */,
 				84FF44B51FDF2EFB00F480E6 /* ReadingTableViewController.swift in Sources */,
+				84465C1B1FE2F8E9002FE660 /* TabViewController.swift in Sources */,
 				84FF44B71FDF394D00F480E6 /* SensorTableViewCell.swift in Sources */,
 				84573DB61FDD72F4004B2E01 /* AppDelegate.swift in Sources */,
 			);

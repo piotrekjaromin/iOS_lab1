@@ -1,11 +1,3 @@
-//
-//  SensorTableViewCell.swift
-//  iOS_lab1
-//
-//  Created by Admin on 11/12/2017.
-//  Copyright © 2017 Admin. All rights reserved.
-//
-
 import UIKit
 
 class SensorTableViewCell: UITableViewCell {

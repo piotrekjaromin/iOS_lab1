@@ -43,32 +43,50 @@ class Reading {
     
     static func fillReadingTableWithDatas(db: OpaquePointer?, readings: [Reading]) {
         
-        var insertSQL = "INSERT INTO Reading (timestamp, value, sensor_id) VALUES "
+        var insertSQL = "INSERT INTO reading (timestamp, value, sensor_id) VALUES "
         for reading in readings {
             insertSQL += "(\"\(reading.timestamp)\", \"\(reading.value)\", \"\(reading.sensor.id)\"),";
             sqlite3_exec(db, insertSQL, nil, nil, nil)
         }
         insertSQL = String(insertSQL.characters.dropLast())
         insertSQL += ";"
+        print(insertSQL)
         sqlite3_exec(db, insertSQL, nil, nil, nil)
     }
     
     static func getReadingsFromDB(db: OpaquePointer?) -> [Reading] {
-        print("In getReadingFromDB")
         var stmt: OpaquePointer? = nil
         let selectSQL = "SELECT timestamp, value, sensor_id FROM reading;"
         sqlite3_prepare_v2(db, selectSQL, -1, &stmt, nil)
         var readings: [Reading] = []
         while sqlite3_step(stmt) == SQLITE_ROW {
-            print("found")
             let timestamp = sqlite3_column_double(stmt, 0)
             let value = sqlite3_column_double(stmt, 1)
             let sensor_id = sqlite3_column_int(stmt, 2)
-            print("\(timestamp): \(value): \(sensor_id)")
             readings.append(Reading(timestamp: timestamp, sensor: Sensor(id: Int(sensor_id), name: "", description: ""), value: value))
         }
         sqlite3_finalize(stmt)
         
         return readings;
+    }
+    
+    static func findSmallestRecordedTimestamp(db: OpaquePointer?) -> Double {
+        var selectSQL = "select MIN(timestamp) from reading;"
+        var stmt: OpaquePointer? = nil
+        sqlite3_prepare_v2(db, selectSQL, -1, &stmt, nil)
+        sqlite3_step(stmt)
+        let value = sqlite3_column_double(stmt, 0)
+        sqlite3_finalize(stmt)
+        return value;
+    }
+    
+    static func findLargestRecordedTimestamp(db: OpaquePointer?) -> Double {
+        var selectSQL = "select MAX(timestamp) from reading;"
+        var stmt: OpaquePointer? = nil
+        sqlite3_prepare_v2(db, selectSQL, -1, &stmt, nil)
+        sqlite3_step(stmt)
+        let value = sqlite3_column_double(stmt, 0)
+        sqlite3_finalize(stmt)
+        return value;
     }
 }

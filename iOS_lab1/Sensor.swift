@@ -42,7 +42,6 @@ class Sensor {
     }
     
     static func getSensorsFromDB(db: OpaquePointer?) -> [Sensor] {
-        print("In getSensorsFromDB");
         var stmt: OpaquePointer? = nil
         let selectSQL = "SELECT id, name, desc FROM sensor;"
         sqlite3_prepare_v2(db, selectSQL, -1, &stmt, nil)
@@ -51,7 +50,6 @@ class Sensor {
             let id = sqlite3_column_int(stmt, 0)
             let name = String(cString: sqlite3_column_text(stmt, 1))
             let desc = String(cString: sqlite3_column_text(stmt, 2))
-            print("\(id): \(name): \(desc)")
             sensors.append(Sensor(id: Int(id), name: name, description: desc))
         }
         sqlite3_finalize(stmt)
