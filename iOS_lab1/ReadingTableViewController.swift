@@ -14,12 +14,11 @@ class ReadingTableViewController: UITableViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("In view did appear")
         readings = Reading.getReadingsFromDB(db: db)
-        
         var startTime = NSDate()
         let smalest = Reading.findSmallestRecordedTimestamp(db: db)
         let measuredSmalestTime = NSDate().timeIntervalSince(startTime as Date)
+        
         
         startTime = NSDate()
         let largest = Reading.findLargestRecordedTimestamp(db: db);
@@ -27,8 +26,9 @@ class ReadingTableViewController: UITableViewController {
         
         print("Smalest value: \(smalest), time: \(measuredSmalestTime)")
         print("Largest value: \(largest), time: \(measuredLargestTime)")
+        tableView.reloadData()
     }
-
+	
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

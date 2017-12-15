@@ -12,7 +12,7 @@ class TabViewController: UITabBarController {
         print("In view did load on tab")
         docDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
         dbFilePath = NSURL(fileURLWithPath: docDir).appendingPathComponent("demo.db")!.path
-        
+        print("db path: \(dbFilePath)")
         if db == nil {
             print("OpenDB")
             openDatabase()

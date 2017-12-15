@@ -35,7 +35,7 @@ class ViewController: UIViewController {
         var sensorId: Int;
         for i in 1...numberOfReading {
             sensorId = generatedReading[i-1].sensor.id - 1
-            tmp += "timestamp: \(generatedReading[i-1].timestamp), sensor: \(sensors[sensorId].name): value: \(generatedReading[i-1].value) \n"
+            tmp += "timestamp: \(generatedReading[i-1].timestamp), sensor: \(sensors[sensorId].name), value: \(generatedReading[i-1].value) \n"
         }
         resultTextArea.text = tmp;
     }
