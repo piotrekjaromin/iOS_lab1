@@ -27,7 +27,7 @@ class ReadingTableViewController: UITableViewController {
         print("Smalest value: \(smalest), time: \(measuredSmalestTime)")
         print("Largest value: \(largest), time: \(measuredLargestTime)")
         tableView.reloadData()
-    }
+    }	
 	
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
