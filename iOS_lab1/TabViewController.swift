@@ -5,14 +5,15 @@ class TabViewController: UITabBarController {
     var docDir: String = ""
     var dbFilePath: String = ""
     var db: OpaquePointer? = nil
-    var sensors: [Sensor] = []
+    var sensors: [Sensor] = []		
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("In view did load on tab")
         docDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        dbFilePath = NSURL(fileURLWithPath: docDir).appendingPathComponent("demo.db")!.path
-        print("db path: \(dbFilePath)")
+        dbFilePath = NSURL(fileURLWithPath: docDir).appendingPathComponent("demo1.db")!.path
+        
+        print("Database path: \(dbFilePath)")
+        
         if db == nil {
             print("OpenDB")
             openDatabase()

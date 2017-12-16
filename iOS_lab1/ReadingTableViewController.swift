@@ -15,17 +15,26 @@ class ReadingTableViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         readings = Reading.getReadingsFromDB(db: db)
+        
         var startTime = NSDate()
-        let smalest = Reading.findSmallestRecordedTimestamp(db: db)
+        let smalestAndlargest = Reading.findSmallestRecordedTimestamp(db: db)
         let measuredSmalestTime = NSDate().timeIntervalSince(startTime as Date)
         
         
-        startTime = NSDate()
-        let largest = Reading.findLargestRecordedTimestamp(db: db);
-        let measuredLargestTime = NSDate().timeIntervalSince(startTime as Date)
         
-        print("Smalest value: \(smalest), time: \(measuredSmalestTime)")
-        print("Largest value: \(largest), time: \(measuredLargestTime)")
+        startTime = NSDate()
+        let avgValue = Reading.averageReadingValueForAllsensors(db: db)
+        let measuredAvgTime = NSDate().timeIntervalSince(startTime as Date)
+        
+        startTime = NSDate()
+        let numberAndAvgValue = Reading.numberOfReadingsAndAvgValueIndividualSensor(db: db)
+        let measuredNumberAndAvgTime = NSDate().timeIntervalSince(startTime as Date)
+        
+        
+        print("Smalest and largest value: \(smalestAndlargest), time: \(measuredSmalestTime)")
+        print("Average reading all sensors: \(avgValue), time: \(measuredAvgTime)")
+        print("Sensor name, number of reading and average value for each sensor: \(numberAndAvgValue), time: \(measuredNumberAndAvgTime)")
+
         tableView.reloadData()
     }	
 	

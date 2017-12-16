@@ -104,11 +104,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOS_lab1/ViewController.swift"
-            timestampString = "534977282.998488"
+            timestampString = "535112934.670617"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "generateRecording(_:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -23,7 +23,12 @@ class ViewController: UIViewController {
     }
     
     @IBAction func addReadingToDB(_ sender: UIButton) {
+        
+        let startTime = NSDate()
         Reading.fillReadingTableWithDatas(db: db, readings: generatedReading)
+        let writingtime = NSDate().timeIntervalSince(startTime as Date)
+
+        print("GeneratedSensor time: \(writingtime)")
         resultTextArea.text = "Added \(generatedReading.count) readings do db."
         readings = Reading.getReadingsFromDB(db: db)
     }

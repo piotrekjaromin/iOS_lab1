@@ -135,7 +135,7 @@
             </objects>
             <point key="canvasLocation" x="956" y="1104.1979010494754"/>
         </scene>
-        <!--Item-->
+        <!--Utility screen-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="iOS_lab1" customModuleProvider="target" sceneMemberID="viewController">
@@ -202,7 +202,7 @@
                             <constraint firstItem="k9B-3v-gAu" firstAttribute="leading" secondItem="4Gh-LU-iNM" secondAttribute="leading" id="xrc-Xq-qRx"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="F7v-pT-aAR"/>
+                    <tabBarItem key="tabBarItem" title="Utility screen" id="F7v-pT-aAR" userLabel="Utility screen"/>
                     <connections>
                         <outlet property="numberOfRecordInput" destination="k9B-3v-gAu" id="eFd-6f-Vza"/>
                         <outlet property="resultTextArea" destination="2dz-wp-WYf" id="J5y-wc-DfC"/>
@@ -212,11 +212,11 @@
             </objects>
             <point key="canvasLocation" x="623.20000000000005" y="-443.92803598200902"/>
         </scene>
-        <!--Item-->
+        <!--reading values-->
         <scene sceneID="y5L-Kd-NLX">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Qwd-3w-9Eo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Fd1-gi-e8O"/>
+                    <tabBarItem key="tabBarItem" title="reading values" id="Fd1-gi-e8O"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sAL-y5-3HN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -231,11 +231,11 @@
             </objects>
             <point key="canvasLocation" x="293.60000000000002" y="400.74962518740631"/>
         </scene>
-        <!--Item-->
+        <!--Sensors-->
         <scene sceneID="aff-K3-zpw">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="y4I-o9-4HA" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="zmm-dO-9CA"/>
+                    <tabBarItem key="tabBarItem" title="Sensors" id="zmm-dO-9CA"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ukU-5H-h4T">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

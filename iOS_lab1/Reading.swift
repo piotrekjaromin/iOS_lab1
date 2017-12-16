@@ -46,11 +46,10 @@ class Reading {
         var insertSQL = "INSERT INTO reading (timestamp, value, sensor_id) VALUES "
         for reading in readings {
             insertSQL += "(\"\(reading.timestamp)\", \"\(reading.value)\", \"\(reading.sensor.id)\"),";
-            sqlite3_exec(db, insertSQL, nil, nil, nil)
         }
         insertSQL = String(insertSQL.characters.dropLast())
         insertSQL += ";"
-        print(insertSQL)
+        print("Prepared date. Now insert to sql")
         sqlite3_exec(db, insertSQL, nil, nil, nil)
     }
     
@@ -70,8 +69,22 @@ class Reading {
         return readings;
     }
     
-    static func findSmallestRecordedTimestamp(db: OpaquePointer?) -> Double {
-        var selectSQL = "select MIN(timestamp) from reading;"
+    static func findSmallestRecordedTimestamp(db: OpaquePointer?) -> String {
+        var selectSQL = "select MIN(timestamp), MAX(timestamp) from reading;"
+        var stmt: OpaquePointer? = nil
+        sqlite3_prepare_v2(db, selectSQL, -1, &stmt, nil)
+        sqlite3_step(stmt)
+        let min = sqlite3_column_double(stmt, 0)
+        let max = sqlite3_column_double(stmt, 1)
+        
+        let value =  String(min) + "; " + String(max)
+        sqlite3_finalize(stmt)
+        return value;
+    }
+    
+    
+    static func averageReadingValueForAllsensors(db: OpaquePointer?) -> Double {
+        var selectSQL = "select avg(value) from reading;"
         var stmt: OpaquePointer? = nil
         sqlite3_prepare_v2(db, selectSQL, -1, &stmt, nil)
         sqlite3_step(stmt)
@@ -80,13 +93,21 @@ class Reading {
         return value;
     }
     
-    static func findLargestRecordedTimestamp(db: OpaquePointer?) -> Double {
-        var selectSQL = "select MAX(timestamp) from reading;"
+    static func numberOfReadingsAndAvgValueIndividualSensor(db: OpaquePointer?) -> [String] {
+        var selectSQL = "Select Sensor.name, count(reading.id), avg(reading.value) from reading inner join sensor ON reading.sensor_id=sensor.id group by sensor.name;"
         var stmt: OpaquePointer? = nil
         sqlite3_prepare_v2(db, selectSQL, -1, &stmt, nil)
         sqlite3_step(stmt)
-        let value = sqlite3_column_double(stmt, 0)
+        var result: [String] = []
+        var value: String;
+        while sqlite3_step(stmt) == SQLITE_ROW {
+            var sensorName = String(cString: sqlite3_column_text(stmt, 0))
+            var counter = sqlite3_column_int(stmt, 1)
+            var avg = sqlite3_column_double(stmt, 2)
+            var value = sensorName + " ; " + String(counter) + " ;" + String(avg)
+            result.append(value);
+        }
         sqlite3_finalize(stmt)
-        return value;
+        return result;
     }
 }
