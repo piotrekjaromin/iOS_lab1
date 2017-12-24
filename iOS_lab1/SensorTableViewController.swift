@@ -2,14 +2,12 @@ import UIKit
 
 class SensorTableViewController: UITableViewController {
 
-    var db: OpaquePointer? = nil
-    var sensors: [Sensor] = []
+    var sensors: [SensorEntity] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let tbvc = self.tabBarController as! TabViewController
-        db = tbvc.db
-        sensors = Sensor.getSensorsFromDB(db: db)
+        sensors = tbvc.sensors
         
     }
     
@@ -35,8 +33,8 @@ class SensorTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? SensorTableViewCell
         let sensorTmp = sensors[indexPath.row]
         
-        cell?.nameLabel.text = "name: " + String(sensorTmp.name)
-        cell?.descriptionLabel.text = "description: " + String(sensorTmp.desc)
+        cell?.nameLabel.text = "name: " + sensorTmp.name!
+        cell?.descriptionLabel.text = "description: " + sensorTmp.sensorDescription!
     
         return cell!
     }

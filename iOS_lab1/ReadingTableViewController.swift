@@ -1,35 +1,41 @@
 import UIKit
+import CoreData
+import os.log
 
 class ReadingTableViewController: UITableViewController {
-    var db: OpaquePointer? = nil
-    var readings: [Reading] = []
-    var sensors: [Sensor] = []
-
+    var readings: [ReadingEntity] = []
+    var ad: AppDelegate? = nil
+    var moc: NSManagedObjectContext? = nil
+    var readingEntity: NSEntityDescription? = nil
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let tbvc = self.tabBarController as! TabViewController
-        db = tbvc.db
-        readings = Reading.getReadingsFromDB(db: db)
-        sensors = Sensor.getSensorsFromDB(db: db)
+        
+        ad = UIApplication.shared.delegate as? AppDelegate
+        moc = ad!.persistentContainer.viewContext
+        
+        readingEntity = NSEntityDescription.entity(forEntityName: "ReadingEntity", in: moc!)!
+
+        readings = Reading.getRecordingFromDB()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        readings = Reading.getReadingsFromDB(db: db)
-        
+        readings = Reading.getRecordingFromDB()
+    
         var startTime = NSDate()
-        let smalestAndlargest = Reading.findSmallestRecordedTimestamp(db: db)
+        let smalestAndlargest = Reading.findSmallestRecordedTimestamp()
         let measuredSmalestTime = NSDate().timeIntervalSince(startTime as Date)
         
         
-        
         startTime = NSDate()
-        let avgValue = Reading.averageReadingValueForAllsensors(db: db)
+        let avgValue = Reading.averageReadingValueForAllsensors()
         let measuredAvgTime = NSDate().timeIntervalSince(startTime as Date)
         
         startTime = NSDate()
-        let numberAndAvgValue = Reading.numberOfReadingsAndAvgValueIndividualSensor(db: db)
+        let numberAndAvgValue = Reading.numberOfReadingsAndAvgValueIndividualSensor()
         let measuredNumberAndAvgTime = NSDate().timeIntervalSince(startTime as Date)
-        
+ 
         
         print("Smalest and largest value: \(smalestAndlargest), time: \(measuredSmalestTime)")
         print("Average reading all sensors: \(avgValue), time: \(measuredAvgTime)")
@@ -59,10 +65,9 @@ class ReadingTableViewController: UITableViewController {
         let cellIdentifier = "ReadingTableViewCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ReadingTableViewCell
         let readingTmp = readings[indexPath.row]
-        let sensorId: Int = readingTmp.sensor.id - 1
         
         cell?.valueLabel.text = "value: " + String(readingTmp.value)
-        cell?.sensorNameLabel.text = "sensor name: " + String(sensors[sensorId].name)
+        cell?.sensorNameLabel.text = "sensor name: " + String(describing: readingTmp.sensor!.name!)
         cell?.timestampLabel.text = "timestamp: " + String(readingTmp.timestamp)
 
         return cell!

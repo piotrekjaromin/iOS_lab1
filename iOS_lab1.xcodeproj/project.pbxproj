@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8445033A1FE5440E00C732E9 /* iOS_lab1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 844503381FE5440E00C732E9 /* iOS_lab1.xcdatamodeld */; };
+		8445033C1FE544B300C732E9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8445033B1FE544B300C732E9 /* CoreData.framework */; };
 		84465C1B1FE2F8E9002FE660 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84465C1A1FE2F8E9002FE660 /* TabViewController.swift */; };
 		84573DB61FDD72F4004B2E01 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84573DB51FDD72F4004B2E01 /* AppDelegate.swift */; };
 		84573DB81FDD72F4004B2E01 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84573DB71FDD72F4004B2E01 /* ViewController.swift */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		844503391FE5440E00C732E9 /* iOS_lab1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iOS_lab1.xcdatamodel; sourceTree = "<group>"; };
+		8445033B1FE544B300C732E9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		84465C1A1FE2F8E9002FE660 /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		84573DB21FDD72F4004B2E01 /* iOS_lab1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_lab1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84573DB51FDD72F4004B2E01 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8445033C1FE544B300C732E9 /* CoreData.framework in Frameworks */,
 				84573DDE1FDD9679004B2E01 /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -97,6 +102,7 @@
 		84573DB41FDD72F4004B2E01 /* iOS_lab1 */ = {
 			isa = PBXGroup;
 			children = (
+				844503381FE5440E00C732E9 /* iOS_lab1.xcdatamodeld */,
 				84573DB51FDD72F4004B2E01 /* AppDelegate.swift */,
 				84573DB71FDD72F4004B2E01 /* ViewController.swift */,
 				84573DB91FDD72F4004B2E01 /* Main.storyboard */,
@@ -126,6 +132,7 @@
 		84573DDC1FDD9679004B2E01 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8445033B1FE544B300C732E9 /* CoreData.framework */,
 				84573DDD1FDD9679004B2E01 /* libsqlite3.tbd */,
 			);
 			name = Frameworks;
@@ -242,6 +249,7 @@
 				84573DD81FDD76B5004B2E01 /* Reading.swift in Sources */,
 				84FF44B51FDF2EFB00F480E6 /* ReadingTableViewController.swift in Sources */,
 				84465C1B1FE2F8E9002FE660 /* TabViewController.swift in Sources */,
+				8445033A1FE5440E00C732E9 /* iOS_lab1.xcdatamodeld in Sources */,
 				84FF44B71FDF394D00F480E6 /* SensorTableViewCell.swift in Sources */,
 				84573DB61FDD72F4004B2E01 /* AppDelegate.swift in Sources */,
 			);
@@ -466,6 +474,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		844503381FE5440E00C732E9 /* iOS_lab1.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				844503391FE5440E00C732E9 /* iOS_lab1.xcdatamodel */,
+			);
+			currentVersion = 844503391FE5440E00C732E9 /* iOS_lab1.xcdatamodel */;
+			path = iOS_lab1.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 84573DAA1FDD72F4004B2E01 /* Project object */;
 }
